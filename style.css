@@ -1,0 +1,118 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --primary-color: rgb(254, 108, 2);
+  background-color: rgb(34, 34, 34);
+  color: rgb(239, 240, 240);
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* .game-card */
+#products {
+  margin: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* background-color: red; */
+  max-width: 1250px;
+}
+.game-card {
+  width: 380px;
+  padding: 15px;
+  height: 280px;
+}
+.game-card h2.game-title {
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+}
+
+.game-card .header {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  /* background-color: red; */
+}
+.game-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-card .game-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.game-card .game-price .current-price {
+  font-size: 18px;
+  font-weight: 600;
+}
+.game-card .game-price .previous-price {
+  font-size: 13px;
+  color: rgb(239, 240, 240, 0.5);
+}
+
+.game-card .discount {
+  padding: 5px 15px;
+  background-color: var(--primary-color);
+  width: fit-content;
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  border-radius: 5px;
+  border-top-right-radius: 15px;
+  font-weight: 600;
+  clip-path: polygon(0 0, 83% 0, 100% 100%, 0% 100%);
+}
+
+.products-header {
+  width: 100%;
+  display: flex;
+  /* background-color: red; */
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 200pxw;
+}
+
+.center {
+  display: grid;
+  place-content: center;
+}
+
+.products-header .header-title {
+  margin: 15px;
+}
+
+.products-header .cta-button {
+  margin-right: 15px;
+  width: fit-content;
+  height: 35px;
+}
