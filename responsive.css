@@ -1,0 +1,185 @@
+/* breakpoints */
+/* small mobiles */
+@media only screen and (min-width: 20em) {
+  #products {
+    width: 280px;
+    justify-content: center;
+  }
+  .game-card {
+    width: 250px;
+    padding: 5px;
+    height: 280px;
+  }
+  .game-card .header {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+    max-width: 150px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 40em) {
+  #products {
+    width: 600px;
+  }
+  .game-card {
+    width: 180px;
+    padding: 5px;
+    height: 280px;
+  }
+  .game-card .header {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+    max-width: 80px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) {
+  #products {
+    width: 700px;
+  }
+  .game-card {
+    width: 200px;
+    padding: 15px;
+    height: 280px;
+  }
+  .game-card .header {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+    max-width: 80px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 64em) {
+  #products {
+    width: 900px;
+  }
+  .game-card {
+    width: 270px;
+    padding: 15px;
+    height: 280px;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    max-width: 150px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 80em) {
+  #products {
+    width: 1000px;
+  }
+  .game-card {
+    width: 300px;
+    padding: 15px;
+    height: 280px;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    max-width: 180px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+/* Largest devices such as desktops (1600px and up) */
+@media only screen and (min-width: 100em) {
+  #products {
+    width: 1300px;
+  }
+  .game-card {
+    width: 400px;
+    padding: 15px;
+    height: 280px;
+  }
+  .game-card h2.game-title {
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    max-width: 250px;
+  }
+  .game-card .game-info .title-tag {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .game-card .game-price .current-price {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .game-card .game-price .previous-price {
+    font-size: 13px;
+    color: rgb(239, 240, 240, 0.5);
+  }
+}

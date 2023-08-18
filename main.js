@@ -1,4 +1,5 @@
 import "./style.css";
+import "./responsive.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
@@ -25,35 +26,37 @@ import { setupCounter } from "./counter.js";
 const apiKey = "64b6900de1864cb18cce3b016b4b1a39";
 const gameListContainer = document.getElementById("products");
 const priceAndDiscountList = [
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
-  { price: 19.5, previousPrice: 27.0, discount: 28 },
-  { price: 10.29, previousPrice: 18.99, discount: 46 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 19.5, previousPrice: 27.0, discount: 28 },
-  { price: 10.29, previousPrice: 18.99, discount: 46 },
-  { price: 10.29, previousPrice: 18.99, discount: 46 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 19.5, previousPrice: 27.0, discount: 28 },
-  { price: 10.29, previousPrice: 18.99, discount: 46 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
-  { price: 50.64, previousPrice: 51.64, discount: 2 },
-  { price: 50.99, previousPrice: 51.99, discount: 2 },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: true },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: false },
+  { price: 19.5, previousPrice: 27.0, discount: 28, dlc: false },
+  { price: 10.29, previousPrice: 18.99, discount: 46, dlc: false },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: true },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: true },
+  { price: 19.5, previousPrice: 27.0, discount: 28, dlc: true },
+  { price: 10.29, previousPrice: 18.99, discount: 46, dlc: false },
+  { price: 10.29, previousPrice: 18.99, discount: 46, dlc: false },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
+  { price: 19.5, previousPrice: 27.0, discount: 28, dlc: false },
+  { price: 10.29, previousPrice: 18.99, discount: 46, dlc: false },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: false },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: false },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: false },
+  { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
+  { price: 50.99, previousPrice: 51.99, discount: 2, dlc: true },
 ];
 
 document.querySelector("#products").innerHTML = `
   <div class='products-header'>
-    <h1 class='header-title'>Products</h1>
+    <h1 class='header-title'>Trending</h1>
     <button class="cta-button">View All</button>
   </div>
 
 `;
+
+// for game data
 async function fetchGames() {
   try {
     const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}`);
@@ -65,14 +68,15 @@ async function fetchGames() {
     games.forEach((game, index) => {
       console.log(game);
       const card = document.createElement("div");
-      card.classList.add("game-card");
+      card.classList.add("game-card", "hidden");
 
       const price = priceAndDiscountList[index].price;
       const discount = priceAndDiscountList[index].discount;
       const previousPrice = priceAndDiscountList[index].previousPrice;
+      const dlc = priceAndDiscountList[index].dlc;
 
-      card.innerHTML = `
-        <div class="header">
+      card.innerHTML = `  
+        <div class="header" >
         <img src="${game.background_image}" alt="${game.name}">
         <div class="discount">
           <span>-${discount}%</span>
@@ -80,7 +84,11 @@ async function fetchGames() {
 
         </div>
         <div class="game-info">
-          <h2 class="game-title">${game.name}</h2>
+            <div class="title-tag">       
+            ${dlc ? '<div class="dlc-tag">DLC</div>' : ""}
+            <h2 class="game-title">${game.name}</h2>
+            </div> 
+      
           <p class="game-price">
           <span class="previous-price"> <s>$${previousPrice}</s> </span>  
           <span class="current-price">$${price}</span>
@@ -89,11 +97,29 @@ async function fetchGames() {
         </div>
 
       `;
+
+      observer.observe(card);
       gameListContainer.appendChild(card);
     });
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error(error);
   }
 }
 
 fetchGames();
+
+//
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry);
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    } else {
+      // entry.target.classList.remove("show");
+      //removed for avoiding continous animation
+    }
+  });
+});
+
+const hiddenElements = document.querySelectorAll(".hidden");
+hiddenElements.forEach((el) => observer.observe(el));
