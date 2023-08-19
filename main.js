@@ -166,3 +166,45 @@ const observer = new IntersectionObserver((entries) => {
 
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((el) => observer.observe(el));
+
+// nav unhovered opacity change
+
+document.addEventListener("DOMContentLoaded", function () {
+  const catElements = document.querySelectorAll("#nav-container .cat");
+  const modal = document.getElementById("modal");
+  const close = document.getElementById("close-btn");
+
+  // modal display and category opacity change for unclicked category
+  catElements.forEach((cat) => {
+    cat.addEventListener("click", function () {
+      if (cat.style.opacity === "0.5") {
+        catElements.forEach((otherCat) => {
+          otherCat.style.opacity = "1";
+        });
+        if ((modal.style.display = "block")) {
+          modal.style.display = "none";
+        }
+      } else {
+        catElements.forEach((otherCat) => {
+          if (otherCat !== cat) {
+            otherCat.style.opacity = "0.5";
+            if ((modal.style.display = "none")) {
+              modal.style.display = "block";
+              modal.classList.add("modal-animation");
+            }
+          }
+        });
+      }
+    });
+  });
+
+  // close button
+  // modal removal and category opacity restore
+  close.addEventListener("click", function () {
+    modal.style.display = "none";
+    catElements.forEach((otherCat) => {
+      otherCat.style.opacity = "1";
+    });
+    // alert("hi");
+  });
+});
