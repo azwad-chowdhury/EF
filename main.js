@@ -4,25 +4,6 @@ import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 
-// document.querySelector("#app").innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-//     </a>
-//     <h1>Hello Vite!</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite logo to learn more
-//     </p>
-//   </div>
-// `;
-
-// setupCounter(document.querySelector("#counter"));
 const apiKey = "64b6900de1864cb18cce3b016b4b1a39";
 const gameListContainer = document.getElementById("products");
 const priceAndDiscountList = [
@@ -47,6 +28,9 @@ const priceAndDiscountList = [
   { price: 50.64, previousPrice: 51.64, discount: 2, dlc: false },
   { price: 50.99, previousPrice: 51.99, discount: 2, dlc: true },
 ];
+const carouselImages = [];
+const carouselItems = [];
+const slideContainer = document.querySelector(".slide-container");
 
 document.querySelector("#products").innerHTML = `
   <div class='products-header'>
@@ -64,9 +48,11 @@ async function fetchGames() {
 
     const games = data.results;
 
-    console.log(games);
+    // console.log(games);
+
+    // game-card building
     games.forEach((game, index) => {
-      console.log(game);
+      // console.log(game);
       const card = document.createElement("div");
       card.classList.add("game-card", "hidden");
 
@@ -101,17 +87,74 @@ async function fetchGames() {
       observer.observe(card);
       gameListContainer.appendChild(card);
     });
+
+    // for carousel materials
+    for (let i = 16; i < 18; i++) {
+      carouselImages.push(games[i].background_image);
+      carouselItems.push(games[i]);
+    }
+    updateImage();
   } catch (error) {
     console.error(error);
   }
 }
 
 fetchGames();
+console.log(carouselImages);
+let currentImageIndex = 0;
 
-//
+function updateImage() {
+  slideContainer.innerHTML = "";
+
+  // for slide image
+  const img = document.createElement("img");
+  img.src = carouselImages[currentImageIndex];
+  img.classList.add("slide-image");
+  slideContainer.appendChild(img);
+
+  // for slide info
+  const info = document.createElement("div");
+  info.classList.add("slide-info");
+  slideContainer.appendChild(info);
+
+  //in days tag
+  const days = document.createElement("span");
+  days.textContent = "In 15 days";
+  days.classList.add("days-tag");
+  info.appendChild(days);
+
+  // for slide info text
+  const infoText = document.createElement("p");
+  infoText.textContent = carouselItems[currentImageIndex].name;
+  infoText.classList.add("info-text");
+  info.appendChild(infoText);
+
+  const slidePrice = document.createElement("div");
+  info.append(slidePrice);
+  slidePrice.classList.add("slide-price");
+
+  //for slide discount
+  const discountText = document.createElement("p");
+  discountText.textContent = "-10%";
+  discountText.classList.add("discount-text");
+  slidePrice.appendChild(discountText);
+
+  //for slide price
+  const priceText = document.createElement("p");
+  priceText.textContent = "39.90$";
+  priceText.classList.add("price-text");
+  slidePrice.appendChild(priceText);
+
+  currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+}
+
+setInterval(updateImage, 10000);
+
+// intersection observer for animation, for div that has hidden class
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    console.log(entry);
+    // console.log(entry);
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
     } else {
