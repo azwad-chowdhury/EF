@@ -2,9 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://static.electronicfirst.com/website/uploads/2023/04/18/header_logo_dark_1681808133_643e5b05223c4.webp"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Electronic First Dev Task</title>
   </head>
   <body>
     <div id="nav-container">
@@ -12,6 +16,7 @@
         <img
           src="https://static.electronicfirst.com/website/uploads/2023/04/18/header_logo_dark_1681808133_643e5b05223c4.webp"
           alt=""
+          style="cursor: pointer"
         />
       </div>
       <div class="nav">
@@ -21,7 +26,7 @@
           <span>Upcoming</span>
           <span>Supporting 24/7</span>
         </div>
-        <div class="category">
+        <div class="category" id="category">
           <span class="cat">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -183,8 +188,34 @@
               />
             </svg>
           </span>
-          <a></a>
+          <a class="search-btn" id="search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-search"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="white"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+              <path d="M21 21l-6 -6" />
+            </svg>
+          </a>
         </div>
+        <div class="searchfield" id="searchfield">
+          <input type="text" placeholder="Minecraft, Valorant.." />
+          <span
+            class="advanced-search"
+            style="cursor: pointer; text-align: right"
+            >Advanced Search</span
+          >
+        </div>
+        <span class="search-close" id="search-close">&#x2715; </span>
         <div id="modal" class="modal">
           <div class="modal-content">
             <span id="close-btn" class="close-btn">

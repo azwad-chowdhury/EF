@@ -173,7 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const catElements = document.querySelectorAll("#nav-container .cat");
   const modal = document.getElementById("modal");
   const close = document.getElementById("close-btn");
-
+  const search = document.getElementById("search");
+  const category = document.getElementById("category");
+  const searchfield = document.getElementById("searchfield");
+  const closeSearch = document.getElementById("search-close");
   // modal display and category opacity change for unclicked category
   catElements.forEach((cat) => {
     cat.addEventListener("click", function () {
@@ -206,5 +209,21 @@ document.addEventListener("DOMContentLoaded", function () {
       otherCat.style.opacity = "1";
     });
     // alert("hi");
+  });
+
+  //
+  search.addEventListener("click", function () {
+    category.style.display = "none";
+    searchfield.style.display = "block";
+    closeSearch.style.display = "block";
+    if ((modal.style.display = "block")) {
+      modal.style.display = "none";
+    }
+  });
+
+  closeSearch.addEventListener("click", function () {
+    category.style.display = "flex";
+    searchfield.style.display = "none";
+    closeSearch.style.display = "none";
   });
 });
