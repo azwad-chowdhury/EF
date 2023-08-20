@@ -1,9 +1,18 @@
 import "./style.css";
 import "./responsive.css";
-import javascriptLogo from "./javascript.svg";
-import viteLogo from "/vite.svg";
-import { setupCounter } from "./counter.js";
+import { initializeApp } from "firebase/app";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyB220aJAKOkoUmm8EBiyYzTQt0hPf7sEtM",
+  authDomain: "electronicfirstdevtask.firebaseapp.com",
+  projectId: "electronicfirstdevtask",
+  storageBucket: "electronicfirstdevtask.appspot.com",
+  messagingSenderId: "870686289320",
+  appId: "1:870686289320:web:32b7bf281acb8e559d819d",
+  measurementId: "G-H8REYLM6YW",
+};
+
+const app = initializeApp(firebaseConfig);
 const apiKey = "64b6900de1864cb18cce3b016b4b1a39";
 const gameListContainer = document.getElementById("products");
 const priceAndDiscountList = [
